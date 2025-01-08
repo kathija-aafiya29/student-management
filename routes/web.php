@@ -13,10 +13,10 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [LoginController::class, 'index'])->name('dashboard');
 
 // Resource Routes
-Route::resource('classes', ClassesController::class);
-Route::resource('settings', GeneralSettingsController::class);
-Route::resource('students', StudentsController::class);
-Route::resource('employees', EmployeesController::class);
+// Route::resource('classes', ClassesController::class);
+// Route::resource('settings', GeneralSettingsController::class);
+// Route::resource('students', StudentsController::class);
+// Route::resource('employees', EmployeesController::class);
 
 // Custom Routes for GeneralSettingsController (if needed)
 Route::get('/settings/customize-grading', [GeneralSettingsController::class, 'customizeGrading'])->name('settings.customizeGrading');
