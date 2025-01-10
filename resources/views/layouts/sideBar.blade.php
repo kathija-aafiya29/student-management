@@ -3,7 +3,7 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <img src="/assets/images/faces/face1.jpg" alt="profile">
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>
@@ -41,7 +41,7 @@
             </a>
             <div class="collapse" id="ui-emp">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('employees.allEmployees') }}">All Employees</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('employeesMaster.index') }}">All Employees</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('employees.newEmployees') }}">New Employee</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('employees.jobOfferLetter') }}">Job Offer Letter</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('employees.jobResignation') }}">Job Resignation</a></li>
@@ -71,7 +71,7 @@
             </a>
             <div class="collapse" id="ui-students">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('students.allStudents') }}">All Students</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('studentsMaster.index') }}">All Students</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('students.newStudents') }}">New Students</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('students.admissionLetter') }}">Admission Letter</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('students.studentIdCard') }}">Student Id cards</a></li>

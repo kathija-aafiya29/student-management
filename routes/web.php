@@ -6,6 +6,8 @@ use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\EmployeeMasterController;
+use App\Http\Controllers\StudentMasterController;
 
 // Login and Logout Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -15,8 +17,8 @@ Route::get('/dashboard', [LoginController::class, 'index'])->name('dashboard');
 // Resource Routes
 // Route::resource('classes', ClassesController::class);
 // Route::resource('settings', GeneralSettingsController::class);
-// Route::resource('students', StudentsController::class);
-// Route::resource('employees', EmployeesController::class);
+Route::resource('studentsMaster', StudentMasterController::class);
+Route::resource('employeesMaster', EmployeeMasterController::class);
 
 // Custom Routes for GeneralSettingsController (if needed)
 Route::get('/settings/customize-grading', [GeneralSettingsController::class, 'customizeGrading'])->name('settings.customizeGrading');

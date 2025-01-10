@@ -8,6 +8,11 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+    
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -34,6 +39,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -45,6 +51,10 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="/assets/js/file-upload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <!-- End custom js for this page -->
+
+    @yield('js')
   </body>
 </html>
