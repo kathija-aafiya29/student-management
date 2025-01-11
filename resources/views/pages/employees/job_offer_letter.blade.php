@@ -1,209 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Job Offer Letter</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-  </head>
-  <body>
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
+    <!-- Include Bootstrap for styling and DataTable -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+
+<body>
     <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
-      @include('layouts.navbar')
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:../../partials/_sidebar.html -->
-        @include('layouts.sideBar')
+        <!-- partial:partials/_navbar.html -->
+        @include('layouts.navbar')
         <!-- partial -->
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title"> Job Offer Letter </h3>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Employees</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Job Offer Letter</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Horizontal Two column</h4>
-                    <form class="form-sample">
-                      <p class="card-description"> Personal info </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">First Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            @include('layouts.sideBar')
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title"> Job Offer Letter </h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Employees</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Job Offer Letter</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Employee Table</h4>
+                                    <table class="table table-hover" id="employeeTable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Job Title</th>
+                                                <th>Start Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>John Doe</td>
+                                                <td>Software Engineer</td>
+                                                <td>2025-02-01</td>
+                                                <td><button class="btn btn-info viewOffer" data-id="1">View Offer
+                                                        Letter</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Jane Smith</td>
+                                                <td>Data Analyst</td>
+                                                <td>2025-03-01</td>
+                                                <td><button class="btn btn-info viewOffer" data-id="2">View Offer
+                                                        Letter</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Last Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Gender</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Category</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
-                                <option>Category4</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Membership</label>
-                            <div class="col-sm-4">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <p class="card-description"> Address </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 1</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 2</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Postcode</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>America</option>
-                                <option>Italy</option>
-                                <option>Russia</option>
-                                <option>Britain</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                @include('layouts.footer')
+                <!-- partial -->
             </div>
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-          @include('layouts.footer')
-          <!-- partial -->
+            <!-- main-panel ends -->
         </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
+        <!-- page-body-wrapper ends -->
+
+        <!-- Modal for viewing Job Offer Letter -->
+        <div class="modal fade" id="offerLetterModal" tabindex="-1" aria-labelledby="offerLetterModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="offerLetterModalLabel">Job Offer Letter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="offer_letter" style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
+                            <h2 style="text-align: center;">Job Offer Letter</h2>
+                            <p>Dear <span id="staffName">[Staff Name]</span>,</p>
+                            <p>We are pleased to offer you the position of <strong><span
+                                        id="staffRole">[Role]</span></strong> at
+                                <strong><span id="schoolName">[School Name]</span></strong>.
+                            </p>
+                            <p>Your start date will be <strong><span id="startDate">[Start Date]</span></strong>, and
+                                you will be
+                                reporting to <strong><span id="principalName">[Principal Name]</span></strong> at our
+                                <strong><span id="location">[Location]</span></strong> school.
+                            </p>
+                            <p>
+                                The starting salary for this position is <strong><span
+                                        id="salary">[Salary]</span></strong> per
+                                annum, with the additional benefits of
+                                <strong><span id="benefits">[Benefits]</span></strong>. Please review the terms and
+                                conditions attached in the detailed offer.
+                            </p>
+                            <p>We are excited to have you join our teaching staff and look forward to your contributions
+                                to the
+                                students and the school community.</p>
+                            <p>Sincerely,</p>
+                            <p><strong><span id="yourName">[Your Name]</span></strong></p>
+                            <p><strong><span id="yourJobTitle">[Your Job Title]</span></strong></p>
+                            <p><strong><span id="schoolNameFooter">[School Name]</span></strong></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="download-pdf" class="btn btn-primary">Download PDF</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('assets/js/misc.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="assets/js/file-upload.js"></script>
-    <!-- End custom js for this page -->
-  </body>
+    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net@1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            $('#employeeTable').DataTable();
+
+            // View Offer Letter button click
+            $('.viewOffer').on('click', function() {
+                const employeeId = $(this).data('id');
+
+                // Fetch employee details (here, using static data for simplicity)
+                if (employeeId === 1) {
+                    $('#staffName').text('John Doe');
+                    $('#staffRole').text('Software Engineer');
+                    $('#schoolName').text('Tech Corp');
+                    $('#startDate').text('2025-02-01');
+                    $('#principalName').text('Alice Johnson');
+                    $('#location').text('New York');
+                    $('#salary').text('$80,000');
+                    $('#benefits').text('Health Insurance, 401k');
+                    $('#yourName').text('Bob Smith');
+                    $('#yourJobTitle').text('HR Manager');
+                    $('#schoolNameFooter').text('Tech Corp');
+                } else if (employeeId === 2) {
+                    $('#staffName').text('Jane Smith');
+                    $('#staffRole').text('Data Analyst');
+                    $('#schoolName').text('Data Inc');
+                    $('#startDate').text('2025-03-01');
+                    $('#principalName').text('Tom Green');
+                    $('#location').text('San Francisco');
+                    $('#salary').text('$70,000');
+                    $('#benefits').text('Health Insurance, Paid Time Off');
+                    $('#yourName').text('Sarah Lee');
+                    $('#yourJobTitle').text('HR Director');
+                    $('#schoolNameFooter').text('Data Inc');
+                }
+
+                // Show modal
+                $('#offerLetterModal').modal('show');
+            });
+
+            // Download PDF button click
+            $('#download-pdf').on('click', function() {
+                const {
+                    jsPDF
+                } = window.jspdf;
+                const doc = new jsPDF();
+
+                // Get the content of the offer letter
+                const offerLetter = document.getElementById('offer_letter');
+
+                // Use html2canvas with the callback approach
+                html2canvas(offerLetter, {
+                    useCORS: true,
+                    scrollX: 0,
+                    scrollY: -window.scrollY,
+                    windowWidth: document.body.scrollWidth,
+                    windowHeight: document.body.scrollHeight,
+                    onrendered: function(canvas) {
+                        const imgData = canvas.toDataURL('image/png');
+                        const imgWidth = doc.internal.pageSize.getWidth();
+                        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                        // Add the image to the PDF
+                        doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+                        // Save the PDF
+                        doc.save('Job_Offer_Letter.pdf');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
 </html>

@@ -12,7 +12,7 @@ class EmployeesController extends Controller
     }
     public function employeeIdCard()
     {
-        return view('pages.employees.employee_id_card');
+        return view('pages.employees.employee_id_cards');
     }
     public function jobOfferLetter()
     {
