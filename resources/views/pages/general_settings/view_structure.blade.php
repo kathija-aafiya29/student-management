@@ -1,209 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-  </head>
-  <body>
-    <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
-      @include('layouts.navbar')
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:../../partials/_sidebar.html -->
-        @include('layouts.sideBar')
-        <!-- partial -->
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title"> View structure </h3>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">General Settings</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">View structure</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Horizontal Two column</h4>
-                    <form class="form-sample">
-                      <p class="card-description"> Personal info </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">First Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Last Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Gender</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Category</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
-                                <option>Category4</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Membership</label>
-                            <div class="col-sm-4">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <p class="card-description"> Address </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 1</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 2</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Postcode</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>America</option>
-                                <option>Italy</option>
-                                <option>Russia</option>
-                                <option>Britain</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
+@extends('layouts.layout')
+
+@section('content')
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title"> View structure </h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">General Settings</a></li>
+          <li class="breadcrumb-item active" aria-current="page">View structure</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            {{-- <h4 class="card-title">Horizontal Two column</h4> --}}
+            <form class="form-sample">
+              {{-- <p class="card-description"> Personal info </p> --}}
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Class</label>
+                    <select name="class_type" class="form-control form-select form-control-sm" >
+                      <option value="">Choose</option>
+                      <option value="Class1">Class1</option>
+                      <option value="Class2">Class2</option>
+                      <option value="Class3">Class3</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>FeeType</label>
+                    <select name="fee_type" class="form-control form-select form-control-sm" >
+                      <option value="">Choose</option>
+                      <option value="Fee1">Fee1</option>
+                      <option value="Fee2">Fee2</option>
+                      <option value="Fee3">Fee3</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Caste</label>
+                    <select name="caste_role" class="form-control form-select form-control-sm" >
+                      <option value="">Choose</option>
+                      <option value="Caste1">Caste1</option>
+                      <option value="Caste2">Caste2</option>
+                      <option value="Caste3">Caste3</option>
+                    </select>
                   </div>
                 </div>
               </div>
+           
+            </form>
+            <div class="col-lg-12 grid-margin stretch-card">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th> Fee Structure/Caste </th>
+                      <th> Caste 1 </th>
+                      <th> Caste 2</th>
+                      <th> Caste 3</th>
+                      <th> Caste 4 </th>
+                      <th> Caste 5 </th>
+                      <th> Caste 6 </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> Monthly Tution Fee </td>
+                      <td> Herman Beck </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $ 77.99 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                    <tr>
+                      <td> Admission Fee </td>
+                      <td> Messsy Adam </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $245.30 </td>
+                      <td> July 1, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                    <tr>
+                      <td> Registration Fee </td>
+                      <td> John Richards </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $138.00 </td>
+                      <td> Apr 12, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                    <tr>
+                      <td> Transport </td>
+                      <td> Peter Meggik </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $ 77.99 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                    <tr>
+                      <td> Books </td>
+                      <td> Edward </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $ 160.25 </td>
+                      <td> May 03, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                    <tr>
+                      <td> Uniform </td>
+                      <td> John Doe </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $ 123.21 </td>
+                      <td> April 05, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                    <tr>
+                      <td> Others </td>
+                      <td> Henry Tom </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $ 150.00 </td>
+                      <td> June 16, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                    <tr>
+                      <td> Total Amount </td>
+                      <td> Henry Tom </td>
+                      <td>
+                        <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </td>
+                      <td> $ 150.00 </td>
+                      <td> June 16, 2015 </td>
+                      <td> May 15, 2015 </td>
+                      <td> May 15, 2015 </td>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-          @include('layouts.footer')
-          <!-- partial -->
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/file-upload.js"></script>
-    <!-- End custom js for this page -->
-  </body>
-</html>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  @include('layouts.footer')
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+@endsection

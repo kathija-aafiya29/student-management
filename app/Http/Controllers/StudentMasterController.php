@@ -62,7 +62,7 @@ class StudentMasterController extends Controller
             $validated['profile_picture'] =$filePath ?? null;
     
             Students::create($validated);
-
+            DB::commit();
             return response()->json(['message' => 'Student record created successfully.'], 201);
         }catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
