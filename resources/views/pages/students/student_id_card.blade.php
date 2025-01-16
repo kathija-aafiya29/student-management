@@ -9,6 +9,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/id_card.css') }}">
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -60,7 +61,10 @@
                                                 <td>John</td>
                                                 <td>Doe</td>
                                                 <td>Software Engineer</td>
-                                                <td><button class="btn btn-info view-id-card" data-id="1">View ID
+                                                <td><button class="btn btn-info view-id-card" data-id="1"data-company-name="Raju" data-designation="X-class "
+                                                    data-phone="+91 8980849796"
+                                                    data-address="Part-1, 89 Harinadad Rd"
+                                                    data-email="Planicsdeveloper@gmail.com">View ID
                                                         Card</button></td>
                                             </tr>
                                             <tr>
@@ -68,7 +72,10 @@
                                                 <td>Jane</td>
                                                 <td>Smith</td>
                                                 <td>Data Analyst</td>
-                                                <td><button class="btn btn-info view-id-card" data-id="2">View ID
+                                                <td><button class="btn btn-info view-id-card" data-id="2"data-company-name="Balaji" data-designation="XII-Class"
+                                                    data-phone="+91 8980849796"
+                                                    data-address="Part-1, 89 Harinadad Rd"
+                                                    data-email="Planicsdeveloper@gmail.com">View ID
                                                         Card</button></td>
                                             </tr>
                                         </tbody>
@@ -90,27 +97,57 @@
         </div>
         <!-- page-body-wrapper ends -->
         <div class="modal fade" id="idCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Student ID Card</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
-                    <div class="modal-body" id="id_card_content">
-                        <!-- Employee ID Card Content -->
-                        <p><strong>First Name: </strong><span id="empFirstName"></span></p>
-                        <p><strong>Last Name: </strong><span id="empLastName"></span></p>
-                        <p><strong>Role: </strong><span id="empRole"></span></p>
-                        <p><strong>Date of Birth: </strong><span id="empDOB"></span></p>
-                        <p><strong>Category: </strong><span id="empCategory"></span></p>
-                        <p><strong>Membership: </strong><span id="empMembership"></span></p>
-                        <p><strong>Address: </strong><span id="empAddress"></span></p>
-                        <p><strong>State: </strong><span id="empState"></span></p>
-                        <p><strong>Postcode: </strong><span id="empPostcode"></span></p>
-                        <p><strong>City: </strong><span id="empCity"></span></p>
-                        <p><strong>Country: </strong><span id="empCountry"></span></p>
+                    <div class="modal-body" id="id_card_content" style="background-color: #e6ebe0;">
+
+                        <div class="overall-container">
+                            <div class="custom-container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="custom-padding">
+                                            <div id="front-card" class="custom-font">
+                                                <div class="custom-top">
+                                                    <img src="{{ asset('assets/images/id_card/download.png') }}"
+                                                        alt="Profile Picture">
+                                                </div>
+                                                <div class="custom-bottom">
+                                                    <p id="company-name">Default Company</p>
+                                                    <p id="designation" class="custom-desi">Default Designation</p>
+                                                    <div class="custom-barcode">
+                                                        <img src="{{ asset('assets/images/id_card/qr_sample.png') }}"
+                                                            alt="QR Code">
+                                                    </div>
+                                                    <br>
+                                                    <p id="phone" class="custom-no">+00 0000000000</p>
+                                                    <p id="address" class="custom-no">Default Address</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="back-card" class="custom-back">
+                                            <h1 class="custom-details">Information</h1>
+                                            <hr>
+                                            <div id="back-details" class="custom-details-info">
+                                                <p><b>Email:</b></p>
+                                                <p id="email">default@example.com</p>
+                                            </div>
+                                            <div class="custom-logo">
+                                                <img src="{{ asset('assets/images/id_card/barcode.png') }}">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -160,32 +197,20 @@
             $('.view-id-card').on('click', function() {
                 const employeeId = $(this).data('id');
                 // Fetch employee details (for simplicity, using static data here)
-                if (employeeId === 1) {
-                    $('#empFirstName').text('John');
-                    $('#empLastName').text('Doe');
-                    $('#empRole').text('Software Engineer');
-                    $('#empDOB').text('1990-05-15');
-                    $('#empCategory').text('Category1');
-                    $('#empMembership').text('Free');
-                    $('#empAddress').text('123 Main St');
-                    $('#empState').text('New York');
-                    $('#empPostcode').text('10001');
-                    $('#empCity').text('New York');
-                    $('#empCountry').text('USA');
-                } else if (employeeId === 2) {
-                    $('#empFirstName').text('Jane');
-                    $('#empLastName').text('Smith');
-                    $('#empRole').text('Data Analyst');
-                    $('#empDOB').text('1992-08-22');
-                    $('#empCategory').text('Category2');
-                    $('#empMembership').text('Professional');
-                    $('#empAddress').text('456 Market St');
-                    $('#empState').text('California');
-                    $('#empPostcode').text('94105');
-                    $('#empCity').text('San Francisco');
-                    $('#empCountry').text('USA');
-                }
+                const companyName = $(this).data('company-name');
+                const designation = $(this).data('designation');
+                const phone = $(this).data('phone');
+                const address = $(this).data('address');
+                const email = $(this).data('email');
 
+                // Update the front card details
+                $('#company-name').text(companyName);
+                $('#designation').text(designation);
+                $('#phone').text(phone);
+                $('#address').text(address);
+
+                // Update the back card details
+                $('#email').text(email);
                 // Show modal
                 $('#idCardModal').modal('show');
             });
