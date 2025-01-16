@@ -61,11 +61,12 @@ class ClassesController extends Controller
     {
         //
     }
-    public function allClassess()
+    public function allClasses()
     {
+        
         return view('pages.classes.all_classes');
     }
-    public function newClassess()
+    public function newClasses()
     {
         return view('pages.classes.new_classes');
     }
