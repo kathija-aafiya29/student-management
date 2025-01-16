@@ -1,177 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.layout')
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+@endsection
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Job Resignation</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
-    <!-- Include Bootstrap for styling and DataTable -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
-        @include('layouts.navbar')
+@section('content')
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Job Resignation </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Employees</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Job Resignation</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Employee Table</h4>
+                            <table id="resignationTable" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Staff Name</th>
+                                        <th>Position</th>
+                                        <th>Resignation Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>John Doe</td>
+                                        <td>Teacher</td>
+                                        <td>2025-02-15</td>
+                                        <td><label class="badge badge-warning">Pending</label></td>
+                                        <td><button class="btn btn-info view-resignation-btn"
+                                                data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
+                                                data-name="John Doe" data-position="Teacher"
+                                                data-date="2025-02-15" data-status="Pending"
+                                                data-id="1">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jane Smith</td>
+                                        <td>Administrator</td>
+                                        <td>2025-03-01</td>
+                                        <td><label class="badge badge-success">Approved</label></td>
+                                        <td><button class="btn btn-info view-resignation-btn"
+                                                data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
+                                                data-name="Jane Smith" data-position="Administrator"
+                                                data-date="2025-03-01" data-status="Approved"
+                                                data-id="2">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Michael Brown</td>
+                                        <td>Manager</td>
+                                        <td>2025-01-10</td>
+                                        <td><label class="badge badge-danger">Rejected</label></td>
+                                        <td><button class="btn btn-info view-resignation-btn"
+                                                data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
+                                                data-name="Michael Brown" data-position="Manager"
+                                                data-date="2025-01-10" data-status="Rejected"
+                                                data-id="3">View</button></td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        @include('layouts.footer')
         <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_sidebar.html -->
-            @include('layouts.sideBar')
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="page-header">
-                        <h3 class="page-title"> Job Resignation </h3>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Employees</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Job Resignation</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Employee Table</h4>
-                                    <table id="resignationTable" class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Staff Name</th>
-                                                <th>Position</th>
-                                                <th>Resignation Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>John Doe</td>
-                                                <td>Teacher</td>
-                                                <td>2025-02-15</td>
-                                                <td><label class="badge badge-warning">Pending</label></td>
-                                                <td><button class="btn btn-info view-resignation-btn"
-                                                        data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
-                                                        data-name="John Doe" data-position="Teacher"
-                                                        data-date="2025-02-15" data-status="Pending"
-                                                        data-id="1">View</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Jane Smith</td>
-                                                <td>Administrator</td>
-                                                <td>2025-03-01</td>
-                                                <td><label class="badge badge-success">Approved</label></td>
-                                                <td><button class="btn btn-info view-resignation-btn"
-                                                        data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
-                                                        data-name="Jane Smith" data-position="Administrator"
-                                                        data-date="2025-03-01" data-status="Approved"
-                                                        data-id="2">View</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Michael Brown</td>
-                                                <td>Manager</td>
-                                                <td>2025-01-10</td>
-                                                <td><label class="badge badge-danger">Rejected</label></td>
-                                                <td><button class="btn btn-info view-resignation-btn"
-                                                        data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
-                                                        data-name="Michael Brown" data-position="Manager"
-                                                        data-date="2025-01-10" data-status="Rejected"
-                                                        data-id="3">View</button></td>
-                                            </tr>
-                                            <!-- Add more rows as needed -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
-                @include('layouts.footer')
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-
-        <!-- Modal for viewing Job Offer Letter -->
-        <div class="modal fade" id="resignationLetterModal" tabindex="-1" aria-labelledby="resignationLetterModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="resignationLetterModalLabel">Resignation Letter</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="resignation_letter"
-                            style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
-                            <h2 style="text-align: center;">Resignation Letter</h2>
-                            <p>Dear <span id="managerName">[Manager Name]</span>,</p>
-                            <p>I am writing to formally resign from my position as <strong><span
-                                        id="staffTitlepo">[Position Title]</span></strong> at
-                                <strong><span id="schoolName">[Company Name]</span></strong>, effective on <strong><span
-                                        id="resignationDate">[Resignation Date]</span></strong>.
-                            </p>
-                            <p>This decision has not been an easy one, but after careful consideration, I believe it is
-                                the right time for me to pursue new opportunities and personal growth.</p>
-                            <p>I would like to express my sincere gratitude for the opportunities for professional and
-                                personal development that you have provided me during my time with the company. It has
-                                been a pleasure working with you and the entire team, and I truly appreciate the support
-                                and guidance I have received.</p>
-                            <p>In the next few weeks, I am happy to assist in the transition process and ensure a smooth
-                                handover of my responsibilities.</p>
-                            <p>Thank you again for the opportunity to be part of the <strong><span
-                                        id="companyNameFooter">[Company Name]</span></strong> team, and I wish the
-                                company continued success in the future.</p>
-                            <p>Sincerely,</p>
-                            <p><strong><span id="staffName">[Staff Name]</span></strong></p>
-                            <p><strong><span id="staffTitle">[Staff Title]</span></strong></p>
-                            <p><strong><span id="schoolNamefotter">[Company Name]</span></strong></p>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="download-resignation-pdf" class="btn btn-primary">Download PDF</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets/js/misc.js') }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
+        <!-- main-panel ends -->
+    
+    <!-- page-body-wrapper ends -->
+
+    <!-- Modal for viewing Job Offer Letter -->
+    <div class="modal fade" id="resignationLetterModal" tabindex="-1" aria-labelledby="resignationLetterModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resignationLetterModalLabel">Resignation Letter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="resignation_letter"
+                        style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
+                        <h2 style="text-align: center;">Resignation Letter</h2>
+                        <p>Dear <span id="managerName">[Manager Name]</span>,</p>
+                        <p>I am writing to formally resign from my position as <strong><span
+                                    id="staffTitlepo">[Position Title]</span></strong> at
+                            <strong><span id="schoolName">[Company Name]</span></strong>, effective on <strong><span
+                                    id="resignationDate">[Resignation Date]</span></strong>.
+                        </p>
+                        <p>This decision has not been an easy one, but after careful consideration, I believe it is
+                            the right time for me to pursue new opportunities and personal growth.</p>
+                        <p>I would like to express my sincere gratitude for the opportunities for professional and
+                            personal development that you have provided me during my time with the company. It has
+                            been a pleasure working with you and the entire team, and I truly appreciate the support
+                            and guidance I have received.</p>
+                        <p>In the next few weeks, I am happy to assist in the transition process and ensure a smooth
+                            handover of my responsibilities.</p>
+                        <p>Thank you again for the opportunity to be part of the <strong><span
+                                    id="companyNameFooter">[Company Name]</span></strong> team, and I wish the
+                            company continued success in the future.</p>
+                        <p>Sincerely,</p>
+                        <p><strong><span id="staffName">[Staff Name]</span></strong></p>
+                        <p><strong><span id="staffTitle">[Staff Title]</span></strong></p>
+                        <p><strong><span id="schoolNamefotter">[Company Name]</span></strong></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="download-resignation-pdf" class="btn btn-primary">Download PDF</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  @endsection
+  @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
@@ -280,7 +241,4 @@
             });
         });
     </script>
-
-</body>
-
-</html>
+@endsection
