@@ -15,139 +15,139 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Horizontal Two column</h4>
+                    {{-- <h4 class="card-title">Horizontal Two column</h4> --}}
                     <form class="form-sample">
-                      <p class="card-description"> Personal info </p>
+                      {{-- <p class="card-description"> Personal info </p> --}}
                       <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">First Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Class</label>
+                            <select name="class_type" class="form-control form-select form-control-sm" >
+                              <option value="">Choose</option>
+                              <option value="Class1">Class1</option>
+                              <option value="Class2">Class2</option>
+                              <option value="Class3">Class3</option>
+                            </select>
                           </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>FeeType</label>
+                            <select name="fee_type" class="form-control form-select form-control-sm" >
+                              <option value="">Choose</option>
+                              <option value="Fee1">Fee1</option>
+                              <option value="Fee2">Fee2</option>
+                              <option value="Fee3">Fee3</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Caste</label>
+                            <select name="caste_role" class="form-control form-select form-control-sm" >
+                              <option value="">Choose</option>
+                              <option value="Caste1">Caste1</option>
+                              <option value="Caste2">Caste2</option>
+                              <option value="Caste3">Caste3</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 offset-sm-2">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Last Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
+                            <label class="col-sm-4 col-form-label">Monthly Tution Fee</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="m_tution_fee" class="form-control form-control-sm">
+
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 offset-sm-2">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Gender</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" />
+                            <label class="col-sm-4  col-form-label">Administration Fee</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="admin_fee" class="form-control form-control-sm">
+
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 offset-sm-2">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Category</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
-                                <option>Category4</option>
-                              </select>
+                            <label class="col-sm-4  col-form-label">Registration Fee</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="registration_fee" class="form-control form-control-sm">
+
                             </div>
                           </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Membership</label>
-                            <div class="col-sm-4">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        </div> 
                       </div>
-                      <p class="card-description"> Address </p>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 offset-sm-2">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 1</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
+                            <label class="col-sm-4  col-form-label">Art Material</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="art_material" class="form-control form-control-sm">
+
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-6">
+                      </div> 
+                      <div class="row">
+                        <div class="col-md-6 offset-sm-2">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
+                            <label class="col-sm-4  col-form-label">Books</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="books" class="form-control form-control-sm">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                      <div class="row">
+                        <div class="col-md-6 offset-sm-2">
+                          <div class="form-group row">
+                            <label class="col-sm-4  col-form-label">Uniform</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="m_tution_fee" class="form-control form-control-sm">
+
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 offset-sm-2">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 2</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Postcode</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
+                            <label class="col-sm-4  col-form-label">Others</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="others" class="form-control form-control-sm">
+
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 offset-sm-2">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
+                            <label class="col-sm-4  col-form-label">Total Amount</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="total_amount" class="form-control form-control-sm">
+
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>America</option>
-                                <option>Italy</option>
-                                <option>Russia</option>
-                                <option>Britain</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 offset-sm-3">
+                          <div class=" row">
+                            <button type="submit" class="btn btn-primary mr-2 col-sm-3" id="submit-employee">Submit</button>
+                            <a href="{{ route('employeesMaster.index') }}" class="btn btn-light mr-2 col-sm-3">Cancel</a>
+                          </div></div>
+                      
                       </div>
                     </form>
                   </div>
