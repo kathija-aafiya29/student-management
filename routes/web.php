@@ -10,6 +10,7 @@ use App\Http\Controllers\EmployeeMasterController;
 use App\Http\Controllers\StudentMasterController;
 
 // Login and Logout Routes
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [LoginController::class, 'index'])->name('dashboard');
