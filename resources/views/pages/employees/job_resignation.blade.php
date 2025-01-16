@@ -66,7 +66,11 @@
                                                 <td>Teacher</td>
                                                 <td>2025-02-15</td>
                                                 <td><label class="badge badge-warning">Pending</label></td>
-                                                <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal" data-bs-target="#resignationLetterModal" data-name="John Doe" data-position="Teacher" data-date="2025-02-15" data-status="Pending" data-id="1">View</button></td>
+                                                <td><button class="btn btn-info view-resignation-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
+                                                        data-name="John Doe" data-position="Teacher"
+                                                        data-date="2025-02-15" data-status="Pending"
+                                                        data-id="1">View</button></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
@@ -74,7 +78,11 @@
                                                 <td>Administrator</td>
                                                 <td>2025-03-01</td>
                                                 <td><label class="badge badge-success">Approved</label></td>
-                                                <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal" data-bs-target="#resignationLetterModal" data-name="Jane Smith" data-position="Administrator" data-date="2025-03-01" data-status="Approved" data-id="2">View</button></td>
+                                                <td><button class="btn btn-info view-resignation-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
+                                                        data-name="Jane Smith" data-position="Administrator"
+                                                        data-date="2025-03-01" data-status="Approved"
+                                                        data-id="2">View</button></td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
@@ -82,7 +90,11 @@
                                                 <td>Manager</td>
                                                 <td>2025-01-10</td>
                                                 <td><label class="badge badge-danger">Rejected</label></td>
-                                                <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal" data-bs-target="#resignationLetterModal" data-name="Michael Brown" data-position="Manager" data-date="2025-01-10" data-status="Rejected" data-id="3">View</button></td>
+                                                <td><button class="btn btn-info view-resignation-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
+                                                        data-name="Michael Brown" data-position="Manager"
+                                                        data-date="2025-01-10" data-status="Rejected"
+                                                        data-id="3">View</button></td>
                                             </tr>
                                             <!-- Add more rows as needed -->
                                         </tbody>
@@ -103,36 +115,47 @@
 
         <!-- Modal for viewing Job Offer Letter -->
         <div class="modal fade" id="resignationLetterModal" tabindex="-1" aria-labelledby="resignationLetterModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="resignationLetterModalLabel">Resignation Letter</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="resignation_letter" style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
-                        <h2 style="text-align: center;">Resignation Letter</h2>
-                        <p>Dear <span id="managerName">[Manager Name]</span>,</p>
-                        <p>I am writing to formally resign from my position as <strong><span id="staffTitlepo">[Position Title]</span></strong> at
-                            <strong><span id="schoolName">[Company Name]</span></strong>, effective on <strong><span id="resignationDate">[Resignation Date]</span></strong>.</p>
-                        <p>This decision has not been an easy one, but after careful consideration, I believe it is the right time for me to pursue new opportunities and personal growth.</p>
-                        <p>I would like to express my sincere gratitude for the opportunities for professional and personal development that you have provided me during my time with the company. It has been a pleasure working with you and the entire team, and I truly appreciate the support and guidance I have received.</p>
-                        <p>In the next few weeks, I am happy to assist in the transition process and ensure a smooth handover of my responsibilities.</p>
-                        <p>Thank you again for the opportunity to be part of the <strong><span id="companyNameFooter">[Company Name]</span></strong> team, and I wish the company continued success in the future.</p>
-                        <p>Sincerely,</p>
-                        <p><strong><span id="staffName">[Staff Name]</span></strong></p>
-                        <p><strong><span id="staffTitle">[Staff Title]</span></strong></p>
-                        <p><strong><span id="schoolNamefotter">[Company Name]</span></strong></p>
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="resignationLetterModalLabel">Resignation Letter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="download-resignation-pdf" class="btn btn-primary">Download PDF</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="modal-body">
+                        <div id="resignation_letter"
+                            style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
+                            <h2 style="text-align: center;">Resignation Letter</h2>
+                            <p>Dear <span id="managerName">[Manager Name]</span>,</p>
+                            <p>I am writing to formally resign from my position as <strong><span
+                                        id="staffTitlepo">[Position Title]</span></strong> at
+                                <strong><span id="schoolName">[Company Name]</span></strong>, effective on <strong><span
+                                        id="resignationDate">[Resignation Date]</span></strong>.
+                            </p>
+                            <p>This decision has not been an easy one, but after careful consideration, I believe it is
+                                the right time for me to pursue new opportunities and personal growth.</p>
+                            <p>I would like to express my sincere gratitude for the opportunities for professional and
+                                personal development that you have provided me during my time with the company. It has
+                                been a pleasure working with you and the entire team, and I truly appreciate the support
+                                and guidance I have received.</p>
+                            <p>In the next few weeks, I am happy to assist in the transition process and ensure a smooth
+                                handover of my responsibilities.</p>
+                            <p>Thank you again for the opportunity to be part of the <strong><span
+                                        id="companyNameFooter">[Company Name]</span></strong> team, and I wish the
+                                company continued success in the future.</p>
+                            <p>Sincerely,</p>
+                            <p><strong><span id="staffName">[Staff Name]</span></strong></p>
+                            <p><strong><span id="staffTitle">[Staff Title]</span></strong></p>
+                            <p><strong><span id="schoolNamefotter">[Company Name]</span></strong></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="download-resignation-pdf" class="btn btn-primary">Download PDF</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
     </div>
@@ -159,7 +182,40 @@
     <script>
         $(document).ready(function() {
             // Initialize DataTable
-            $('#resignationTable').DataTable();
+            $('#resignationTable').DataTable(
+            //     {
+            //     processing: true,
+            //     serverSide: true,
+            //     ajax: "{{ route('datatable.employees.resignations') }}",
+            //     columns: [{
+            //             data: 'id',
+            //             name: 'id'
+            //         },
+            //         {
+            //             data: 'name',
+            //             name: 'name'
+            //         },
+            //         {
+            //             data: 'class',
+            //             name: 'class'
+            //         },
+            //         {
+            //             data: 'roll_number',
+            //             name: 'roll_number'
+            //         },
+            //         {
+            //             data: 'created_at',
+            //             name: 'created_at'
+            //         },
+            //         {
+            //             data: 'actions',
+            //             name: 'actions',
+            //             orderable: false,
+            //             searchable: false
+            //         },
+            //     ]
+            // }
+        );
 
             // View Resignation Letter button click
             $('.view-resignation-btn').on('click', function() {
@@ -194,7 +250,9 @@
 
             // Download PDF button click
             $('#download-resignation-pdf').on('click', function() {
-                const { jsPDF } = window.jspdf;
+                const {
+                    jsPDF
+                } = window.jspdf;
                 const doc = new jsPDF();
 
                 // Get the content of the resignation letter

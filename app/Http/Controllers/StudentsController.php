@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class StudentsController extends Controller
 {
@@ -29,5 +30,16 @@ class StudentsController extends Controller
     public function studentList()
     {
         return view('pages.students.student_list');
+    }
+    public function getStudentIdCards(Request $request)
+    {
+        $students = Student::select(['id', 'name', 'class', 'roll_number', 'created_at']);
+
+        return DataTables::of($students)
+            ->addColumn('actions', function ($student) {
+                return '<button class="btn btn-primary view-id-card" data-id="' . $student->id . '">View ID Card</button>';
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
     }
 }

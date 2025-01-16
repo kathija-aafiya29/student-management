@@ -140,7 +140,21 @@
     <script>
         $(document).ready(function() {
             // Initialize DataTable
-            $('#studentTable').DataTable();
+            $('#studentTable').DataTable(
+    //             {
+    //     processing: true,
+    //     serverSide: true,
+    //     ajax: "{{ route('datatable.students.idcards') }}",
+    //     columns: [
+    //         { data: 'id', name: 'id' },
+    //         { data: 'name', name: 'name' },
+    //         { data: 'class', name: 'class' },
+    //         { data: 'roll_number', name: 'roll_number' },
+    //         { data: 'created_at', name: 'created_at' },
+    //         { data: 'actions', name: 'actions', orderable: false, searchable: false },
+    //     ]
+    // }
+    );
 
             // View Employee ID Card button click
             $('.view-id-card').on('click', function() {
