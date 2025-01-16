@@ -64,7 +64,7 @@ class EmployeeMasterController extends Controller
         $validated['user_id'] = $user->id;
         $validated['profile_picture'] =$filePath ?? null;
         Employees::create($validated);
-
+        DB::commit();
         return response()->json(['message' => 'Employee and user record created successfully.'], 201);
     }catch (\Illuminate\Validation\ValidationException $e) {
         return response()->json([
