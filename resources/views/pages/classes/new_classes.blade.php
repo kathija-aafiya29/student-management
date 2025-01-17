@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">New Class</h4>
-                            <form id="insertClassForm" class="form-sample" method="POST">
+                            <form id="insertClassForm" class="form-sample" >
                                 @csrf
                                 <p class="card-description">Class Info</p>
                                 <div class="row">
@@ -145,6 +145,7 @@
                     type: "POST",
                     data: {
                         class_name: className,
+                        _token: $('meta[name="csrf-token"]').attr('content'),
                         section: section,
                         class_code: classCode,
                         total_students: totalStudents,

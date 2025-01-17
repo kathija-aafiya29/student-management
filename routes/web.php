@@ -45,7 +45,7 @@ Route::get('/employees/replacing-staff', [EmployeesController::class, 'replacing
 // Custom Routes for ClassesController (if needed)
 Route::get('/classes/allClass', [ClassesController::class, 'allClasses'])->name('classes.allClasses');
 Route::get('/classes/newClass', [ClassesController::class, 'newClasses'])->name('classes.newClasses');
-Route::post('/classes/check-and-insert', [ClassController::class, 'checkAndInsert'])->name('classes.checkAndInsert');
+Route::post('/classes/check-and-insert', [ClassesController::class, 'checkAndInsert'])->name('classes.checkAndInsert');
 
 //Datatable
 Route::post('/students/datatable/student-id-cards', [StudentsController::class, 'getStudentIdCards'])->name('datatable.students.idcards');
