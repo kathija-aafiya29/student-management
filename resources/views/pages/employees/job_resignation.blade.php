@@ -1,9 +1,8 @@
 @extends('layouts.layout')
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
 @endsection
-
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -39,10 +38,9 @@
                                         <td>Teacher</td>
                                         <td>2025-02-15</td>
                                         <td><label class="badge badge-warning">Pending</label></td>
-                                        <td><button class="btn btn-info view-resignation-btn"
-                                                data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
-                                                data-name="John Doe" data-position="Teacher"
-                                                data-date="2025-02-15" data-status="Pending"
+                                        <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal"
+                                                data-bs-target="#resignationLetterModal" data-name="John Doe"
+                                                data-position="Teacher" data-date="2025-02-15" data-status="Pending"
                                                 data-id="1">View</button></td>
                                     </tr>
                                     <tr>
@@ -51,10 +49,9 @@
                                         <td>Administrator</td>
                                         <td>2025-03-01</td>
                                         <td><label class="badge badge-success">Approved</label></td>
-                                        <td><button class="btn btn-info view-resignation-btn"
-                                                data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
-                                                data-name="Jane Smith" data-position="Administrator"
-                                                data-date="2025-03-01" data-status="Approved"
+                                        <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal"
+                                                data-bs-target="#resignationLetterModal" data-name="Jane Smith"
+                                                data-position="Administrator" data-date="2025-03-01" data-status="Approved"
                                                 data-id="2">View</button></td>
                                     </tr>
                                     <tr>
@@ -63,10 +60,9 @@
                                         <td>Manager</td>
                                         <td>2025-01-10</td>
                                         <td><label class="badge badge-danger">Rejected</label></td>
-                                        <td><button class="btn btn-info view-resignation-btn"
-                                                data-bs-toggle="modal" data-bs-target="#resignationLetterModal"
-                                                data-name="Michael Brown" data-position="Manager"
-                                                data-date="2025-01-10" data-status="Rejected"
+                                        <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal"
+                                                data-bs-target="#resignationLetterModal" data-name="Michael Brown"
+                                                data-position="Manager" data-date="2025-01-10" data-status="Rejected"
                                                 data-id="3">View</button></td>
                                     </tr>
                                     <!-- Add more rows as needed -->
@@ -77,16 +73,7 @@
                 </div>
             </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        @include('layouts.footer')
-        <!-- partial -->
     </div>
-        <!-- main-panel ends -->
-    
-    <!-- page-body-wrapper ends -->
-
-    <!-- Modal for viewing Job Offer Letter -->
     <div class="modal fade" id="resignationLetterModal" tabindex="-1" aria-labelledby="resignationLetterModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -96,12 +83,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="resignation_letter"
-                        style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
+                    <div id="resignation_letter" style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
                         <h2 style="text-align: center;">Resignation Letter</h2>
                         <p>Dear <span id="managerName">[Manager Name]</span>,</p>
-                        <p>I am writing to formally resign from my position as <strong><span
-                                    id="staffTitlepo">[Position Title]</span></strong> at
+                        <p>I am writing to formally resign from my position as <strong><span id="staffTitlepo">[Position
+                                    Title]</span></strong> at
                             <strong><span id="schoolName">[Company Name]</span></strong>, effective on <strong><span
                                     id="resignationDate">[Resignation Date]</span></strong>.
                         </p>
@@ -129,14 +115,11 @@
             </div>
         </div>
     </div>
-
-
-  @endsection
-  @section('js')
+@endsection
+@section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/datatables.net@1.11.5/js/jquery.dataTables.min.js"></script>
 
@@ -144,39 +127,39 @@
         $(document).ready(function() {
             // Initialize DataTable
             $('#resignationTable').DataTable(
-            //     {
-            //     processing: true,
-            //     serverSide: true,
-            //     ajax: "{{ route('datatable.employees.resignations') }}",
-            //     columns: [{
-            //             data: 'id',
-            //             name: 'id'
-            //         },
-            //         {
-            //             data: 'name',
-            //             name: 'name'
-            //         },
-            //         {
-            //             data: 'class',
-            //             name: 'class'
-            //         },
-            //         {
-            //             data: 'roll_number',
-            //             name: 'roll_number'
-            //         },
-            //         {
-            //             data: 'created_at',
-            //             name: 'created_at'
-            //         },
-            //         {
-            //             data: 'actions',
-            //             name: 'actions',
-            //             orderable: false,
-            //             searchable: false
-            //         },
-            //     ]
-            // }
-        );
+                //     {
+                //     processing: true,
+                //     serverSide: true,
+                //     ajax: "{{ route('datatable.employees.resignations') }}",
+                //     columns: [{
+                //             data: 'id',
+                //             name: 'id'
+                //         },
+                //         {
+                //             data: 'name',
+                //             name: 'name'
+                //         },
+                //         {
+                //             data: 'class',
+                //             name: 'class'
+                //         },
+                //         {
+                //             data: 'roll_number',
+                //             name: 'roll_number'
+                //         },
+                //         {
+                //             data: 'created_at',
+                //             name: 'created_at'
+                //         },
+                //         {
+                //             data: 'actions',
+                //             name: 'actions',
+                //             orderable: false,
+                //             searchable: false
+                //         },
+                //     ]
+                // }
+            );
 
             // View Resignation Letter button click
             $('.view-resignation-btn').on('click', function() {

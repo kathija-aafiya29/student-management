@@ -43,7 +43,7 @@ class EmployeeMasterController extends Controller
             $file = $request->file('profile_picture');
             $destinationPath = storage_path('app/public/assets/profiles');
             if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0777, true); 
+                mkdir($destinationPath, 0777, true);
             }
             $fileName = uniqid() . '_' . $file->getClientOriginalName(); // Generate a unique name
             $file->move($destinationPath, $fileName); // Move the file
@@ -51,12 +51,12 @@ class EmployeeMasterController extends Controller
             $filePath = 'profiles/' . $fileName;
 
         }
-    
+
         // Create a user record
         $user = User::create([
             'name' => $validated['employee_name'],
             'email' => $validated['email'],
-            'password' => Hash::make('123'), 
+            'password' => Hash::make('123'),
             'role' => 'employee',
         ]);
 
@@ -91,7 +91,7 @@ class EmployeeMasterController extends Controller
     }
 
     // Update an employee
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, Employees $employee)
     {
         // Validation
         $validated = $request->validate([
@@ -132,7 +132,7 @@ class EmployeeMasterController extends Controller
     }
 
     // Delete an employee
-    public function destroy(Employee $employee)
+    public function destroy(Employees $employee)
     {
         // Delete user record
         $employee->user->delete();

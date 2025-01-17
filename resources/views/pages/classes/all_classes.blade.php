@@ -1,159 +1,58 @@
 @extends('layouts.layout')
 
 @section('content')
-        <!-- partial -->
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
-        <h3 class="page-title"> All Classess </h3>
+        <h3 class="page-title"> All Classes </h3>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Classess</a></li>
-            <li class="breadcrumb-item active" aria-current="page">All Classess</li>
+            <li class="breadcrumb-item"><a href="#">Classes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All Classes</li>
           </ol>
         </nav>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Horizontal Two column</h4>
-              <form class="form-sample">
-                <p class="card-description"> Personal info </p>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">First Name</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Last Name</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Gender</label>
-                      <div class="col-sm-9">
-                        <select class="form-control">
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Date of Birth</label>
-                      <div class="col-sm-9">
-                        <input class="form-control" placeholder="dd/mm/yyyy" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Category</label>
-                      <div class="col-sm-9">
-                        <select class="form-control">
-                          <option>Category1</option>
-                          <option>Category2</option>
-                          <option>Category3</option>
-                          <option>Category4</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Membership</label>
-                      <div class="col-sm-4">
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
+      <div class="container">
+        <div class="row">
+          @if(count($classes) >0)
+            @foreach ($classes as $class)
+            <div class="col-md-3 mb-4">
+                <div class="card" style="width: 17rem; height: 18rem;">
+                    <div class="card-body text-center">
+                        <!-- Class Name -->
+                        <h5 class="card-title text-primary">{{ $class->class_name }}</h5>
+                        <!-- Total Students -->
+                        <p class="card-text">
+                            <strong>Total Students:</strong> {{ $class->total_students }}
+                        </p>
+                        <!-- Gender Percentage -->
+                        <div class="gender-stats">
+                            <p class="card-text text-success">
+                                <strong>Boys:</strong> {{ $class->boys_percentage }}%
+                            </p>
+                            <p class="card-text text-info">
+                                <strong>Girls:</strong> {{ $class->girls_percentage }}%
+                            </p>
                         </div>
-                      </div>
-                      <div class="col-sm-5">
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('employeesMaster.edit', $class->id) }}" class="btn btn-sm btn-primary mx-1" title="Edit">
+                                <i class="mdi mdi-table-edit"></i> Edit
+                            </a>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-                <p class="card-description"> Address </p>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Address 1</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">State</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Address 2</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Postcode</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">City</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Country</label>
-                      <div class="col-sm-9">
-                        <select class="form-control">
-                          <option>America</option>
-                          <option>Italy</option>
-                          <option>Russia</option>
-                          <option>Britain</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
             </div>
-          </div>
+            @endforeach
+            @else
+            <div class="col-md-12 mb-4">
+              <div class="card" style=" height: 13rem;">
+                  <div class="d-flex justify-content-center align-items-center mt-3">
+                      No Records Data found
+                  </div>
+              </div>
+            </div>
+            @endif
         </div>
       </div>
     </div>
@@ -163,4 +62,9 @@
     <!-- partial -->
   </div>
   <!-- main-panel ends -->
+@endsection
+@section('js')
+<!-- Include Toastr -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @endsection
