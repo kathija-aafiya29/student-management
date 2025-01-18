@@ -11,7 +11,7 @@ class ClassesController extends Controller
     public function allClasses()
     {
         $classes = Classes::all();
-        return view('pages.classes.all_classes',compact('classes'));
+        return view('pages.classes.all_classes', compact('classes'));
     }
     public function newClasses()
     {
@@ -40,11 +40,32 @@ class ClassesController extends Controller
             'section' => $request->section,
             'class_code' => $request->class_code,
             'total_students' => $request->total_students,
-            'boys' => $request->boys,
-            'girls' => $request->girls,
+            'no_of_boys' => $request->boys,
+            'no_of_girls' => $request->girls,
         ]);
 
         return response()->json(['exists' => false], 200);
     }
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'class_id' => 'required|exists:classes,id',
+            'no_of_boys' => 'required|integer|min:0',
+            'no_of_girls' => 'required|integer|min:0',
+        ]);
+
+        $class = Classes::findOrFail($validated['class_id']);
+        $class->no_of_boys = $validated['no_of_boys'];
+        $class->no_of_girls = $validated['no_of_girls'];
+        $class->total_students = $validated['no_of_boys'] + $validated['no_of_girls']; // Calculate total students
+        $class->save();
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Class details updated successfully!',
+        ]);
+    }
+
 
 }

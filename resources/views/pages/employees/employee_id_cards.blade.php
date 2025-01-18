@@ -26,36 +26,14 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Role</th>
+                                        <th>Name</th>
+                                        <th>Job Title</th>0
+                                        <th>Mobile No</th>
+                                        <th>Email</th>
+                                        <th>Start Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>Software Engineer</td>
-                                        <td><button class="btn btn-info view-id-card" data-id="1"
-                                                data-company-name="Manikam" data-designation="English Teacher"
-                                                data-phone="+91 8980849796" data-address="Part-1, 89 Harinadad Rd"
-                                                data-email="Planicsdeveloper@gmail.com">View ID
-                                                Card</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jane</td>
-                                        <td>Smith</td>
-                                        <td>Data Analyst</td>
-                                        <td><button class="btn btn-info view-id-card" data-id="2"
-                                                data-company-name="Gowtham" data-designation="Maths Teacher"
-                                                data-phone="+91 8980849796" data-address="Part-1, 89 Harinadad Rd"
-                                                data-email="Planicsdeveloper@gmail.com">View ID
-                                                Card</button></td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -142,38 +120,42 @@
         $(document).ready(function() {
             // Initialize DataTable
             $('#employeeTable').DataTable(
-                //     {
-                //     processing: true,
-                //     serverSide: true,
-                //     ajax: "{{ route('datatable.employees.idcards') }}",
-                //     columns: [{
-                //             data: 'id',
-                //             name: 'id'
-                //         },
-                //         {
-                //             data: 'name',
-                //             name: 'name'
-                //         },
-                //         {
-                //             data: 'class',
-                //             name: 'class'
-                //         },
-                //         {
-                //             data: 'roll_number',
-                //             name: 'roll_number'
-                //         },
-                //         {
-                //             data: 'created_at',
-                //             name: 'created_at'
-                //         },
-                //         {
-                //             data: 'actions',
-                //             name: 'actions',
-                //             orderable: false,
-                //             searchable: false
-                //         },
-                //     ]
-                // }
+                    {
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('datatable.employees.idcards') }}",
+                    columns: [{
+                            data: 'id',
+                            name: 'id'
+                        },
+                        {
+                        data: 'employee_name',
+                        name: 'employee_name'
+                    },
+                    {
+                        data: 'employee_role',
+                        name: 'employee_role'
+                    },
+                    {
+                        data: 'mobileno',
+                        name: 'mobileno'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'doj',
+                        name: 'doj'
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        orderable: false,
+                        searchable: false
+                    },
+                    ]
+                }
             );
 
             // View Employee ID Card button click

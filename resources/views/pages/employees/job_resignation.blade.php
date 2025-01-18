@@ -24,49 +24,14 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Staff Name</th>
-                                        <th>Position</th>
-                                        <th>Resignation Date</th>
-                                        <th>Status</th>
+                                        <th>Name</th>
+                                        <th>Job Title</th>0
+                                        <th>Mobile No</th>
+                                        <th>Email</th>
+                                        <th>Start Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John Doe</td>
-                                        <td>Teacher</td>
-                                        <td>2025-02-15</td>
-                                        <td><label class="badge badge-warning">Pending</label></td>
-                                        <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal"
-                                                data-bs-target="#resignationLetterModal" data-name="John Doe"
-                                                data-position="Teacher" data-date="2025-02-15" data-status="Pending"
-                                                data-id="1">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jane Smith</td>
-                                        <td>Administrator</td>
-                                        <td>2025-03-01</td>
-                                        <td><label class="badge badge-success">Approved</label></td>
-                                        <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal"
-                                                data-bs-target="#resignationLetterModal" data-name="Jane Smith"
-                                                data-position="Administrator" data-date="2025-03-01" data-status="Approved"
-                                                data-id="2">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Michael Brown</td>
-                                        <td>Manager</td>
-                                        <td>2025-01-10</td>
-                                        <td><label class="badge badge-danger">Rejected</label></td>
-                                        <td><button class="btn btn-info view-resignation-btn" data-bs-toggle="modal"
-                                                data-bs-target="#resignationLetterModal" data-name="Michael Brown"
-                                                data-position="Manager" data-date="2025-01-10" data-status="Rejected"
-                                                data-id="3">View</button></td>
-                                    </tr>
-                                    <!-- Add more rows as needed -->
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -127,38 +92,42 @@
         $(document).ready(function() {
             // Initialize DataTable
             $('#resignationTable').DataTable(
-                //     {
-                //     processing: true,
-                //     serverSide: true,
-                //     ajax: "{{ route('datatable.employees.resignations') }}",
-                //     columns: [{
-                //             data: 'id',
-                //             name: 'id'
-                //         },
-                //         {
-                //             data: 'name',
-                //             name: 'name'
-                //         },
-                //         {
-                //             data: 'class',
-                //             name: 'class'
-                //         },
-                //         {
-                //             data: 'roll_number',
-                //             name: 'roll_number'
-                //         },
-                //         {
-                //             data: 'created_at',
-                //             name: 'created_at'
-                //         },
-                //         {
-                //             data: 'actions',
-                //             name: 'actions',
-                //             orderable: false,
-                //             searchable: false
-                //         },
-                //     ]
-                // }
+                    {
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('datatable.employees.resignations') }}",
+                    columns: [{
+                            data: 'id',
+                            name: 'id'
+                        },
+                        {
+                        data: 'employee_name',
+                        name: 'employee_name'
+                    },
+                    {
+                        data: 'employee_role',
+                        name: 'employee_role'
+                    },
+                    {
+                        data: 'mobileno',
+                        name: 'mobileno'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'doj',
+                        name: 'doj'
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        orderable: false,
+                        searchable: false
+                    },
+                    ]
+                }
             );
 
             // View Resignation Letter button click

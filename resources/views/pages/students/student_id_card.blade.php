@@ -26,36 +26,14 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Role</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Father Mobile No</th>
+                                        <th>Email</th>
+                                        <th>DOB</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>Software Engineer</td>
-                                        <td><button class="btn btn-info view-id-card" data-id="1"data-company-name="Raju"
-                                                data-designation="X-class " data-phone="+91 8980849796"
-                                                data-address="Part-1, 89 Harinadad Rd"
-                                                data-email="Planicsdeveloper@gmail.com">View ID
-                                                Card</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jane</td>
-                                        <td>Smith</td>
-                                        <td>Data Analyst</td>
-                                        <td><button class="btn btn-info view-id-card"
-                                                data-id="2"data-company-name="Balaji" data-designation="XII-Class"
-                                                data-phone="+91 8980849796" data-address="Part-1, 89 Harinadad Rd"
-                                                data-email="Planicsdeveloper@gmail.com">View ID
-                                                Card</button></td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -146,21 +124,43 @@
     <script>
         $(document).ready(function() {
             // Initialize DataTable
-            $('#studentTable').DataTable(
-                //             {
-                //     processing: true,
-                //     serverSide: true,
-                //     ajax: "{{ route('datatable.students.idcards') }}",
-                //     columns: [
-                //         { data: 'id', name: 'id' },
-                //         { data: 'name', name: 'name' },
-                //         { data: 'class', name: 'class' },
-                //         { data: 'roll_number', name: 'roll_number' },
-                //         { data: 'created_at', name: 'created_at' },
-                //         { data: 'actions', name: 'actions', orderable: false, searchable: false },
-                //     ]
-                // }
-            );
+            $('#studentTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatable.students.idcards') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'student_name',
+                        name: 'student_name'
+                    },
+                    {
+                        data: 'class',
+                        name: 'class'
+                    },
+                    {
+                        data: 'father_mobile_no',
+                        name: 'father_mobile_no'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'dob',
+                        name: 'dob'
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+        });
 
             // View Employee ID Card button click
             $('.view-id-card').on('click', function() {
@@ -177,6 +177,7 @@
                 $('#designation').text(designation);
                 $('#phone').text(phone);
                 $('#address').text(address);
+                console.log(designation);
 
                 // Update the back card details
                 $('#email').text(email);
@@ -212,6 +213,6 @@
                     }
                 });
             });
-        });
+
     </script>
 @endsection
