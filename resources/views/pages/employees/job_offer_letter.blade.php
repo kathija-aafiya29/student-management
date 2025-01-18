@@ -25,29 +25,13 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Job Title</th>
+                                        <th>Job Title</th>0
+                                        <th>Mobile No</th>
+                                        <th>Email</th>
                                         <th>Start Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John Doe</td>
-                                        <td>Software Engineer</td>
-                                        <td>2025-02-01</td>
-                                        <td><button class="btn btn-info viewOffer" data-id="1">View Offer
-                                                Letter</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jane Smith</td>
-                                        <td>Data Analyst</td>
-                                        <td>2025-03-01</td>
-                                        <td><button class="btn btn-info viewOffer" data-id="2">View Offer
-                                                Letter</button></td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -110,73 +94,75 @@
     <script>
         $(document).ready(function() {
             // Initialize DataTable
-            $('#employeeTable').DataTable(
-                //     {
-                //     processing: true,
-                //     serverSide: true,
-                //     ajax: "{{ route('datatable.employees.joboffers') }}",
-                //     columns: [{
-                //             data: 'id',
-                //             name: 'id'
-                //         },
-                //         {
-                //             data: 'name',
-                //             name: 'name'
-                //         },
-                //         {
-                //             data: 'class',
-                //             name: 'class'
-                //         },
-                //         {
-                //             data: 'roll_number',
-                //             name: 'roll_number'
-                //         },
-                //         {
-                //             data: 'created_at',
-                //             name: 'created_at'
-                //         },
-                //         {
-                //             data: 'actions',
-                //             name: 'actions',
-                //             orderable: false,
-                //             searchable: false
-                //         },
-                //     ]
-                // }
-            );
+            $('#employeeTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatable.employees.joboffers') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'employee_name',
+                        name: 'employee_name'
+                    },
+                    {
+                        data: 'employee_role',
+                        name: 'employee_role'
+                    },
+                    {
+                        data: 'mobileno',
+                        name: 'mobileno'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'doj',
+                        name: 'doj'
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
 
             // View Offer Letter button click
             $('.viewOffer').on('click', function() {
+                alert('hello')
                 const employeeId = $(this).data('id');
-
-                // Fetch employee details (here, using static data for simplicity)
-                if (employeeId === 1) {
-                    $('#staffName').text('John Doe');
-                    $('#staffRole').text('Software Engineer');
-                    $('#schoolName').text('Tech Corp');
-                    $('#startDate').text('2025-02-01');
-                    $('#principalName').text('Alice Johnson');
-                    $('#location').text('New York');
-                    $('#salary').text('$80,000');
-                    $('#benefits').text('Health Insurance, 401k');
-                    $('#yourName').text('Bob Smith');
-                    $('#yourJobTitle').text('HR Manager');
-                    $('#schoolNameFooter').text('Tech Corp');
-                } else if (employeeId === 2) {
-                    $('#staffName').text('Jane Smith');
-                    $('#staffRole').text('Data Analyst');
-                    $('#schoolName').text('Data Inc');
-                    $('#startDate').text('2025-03-01');
-                    $('#principalName').text('Tom Green');
-                    $('#location').text('San Francisco');
-                    $('#salary').text('$70,000');
-                    $('#benefits').text('Health Insurance, Paid Time Off');
-                    $('#yourName').text('Sarah Lee');
-                    $('#yourJobTitle').text('HR Director');
-                    $('#schoolNameFooter').text('Data Inc');
-                }
-
-                // Show modal
+                const url = "{{ route('employees.show', ':id') }}".replace(':id', employeeId);
+                // Make an AJAX request to fetch employee details from the server
+                $.ajax({
+                    url: url, // API endpoint to get employee details
+                    method: 'GET', // HTTP method
+                    success: function(response) {
+                        // Check if the response contains valid data
+                        if (response && response.data) {
+                            const employee = response.data;
+                            $('#staffName').text(employee.name);
+                            $('#staffRole').text(employee.role);
+                            $('#schoolName').text(employee.school);
+                            $('#startDate').text(employee.start_date);
+                            $('#principalName').text(employee.principal_name);
+                            $('#location').text(employee.location);
+                            $('#salary').text(employee.salary);
+                            $('#benefits').text(employee.benefits);
+                            $('#yourName').text(employee.hr_name);
+                            $('#yourJobTitle').text(employee.hr_job_title);
+                            $('#schoolNameFooter').text(employee.school_footer);
+                        } else {
+                            console.error('Employee details not found');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching employee details:', error);
+                    }
+                });
                 $('#offerLetterModal').modal('show');
             });
 

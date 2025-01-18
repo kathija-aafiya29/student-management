@@ -41,14 +41,18 @@ Route::get('/employees/job-offer-letter', [EmployeesController::class, 'jobOffer
 Route::get('/employees/job-resignation', [EmployeesController::class, 'jobResignation'])->name('employees.jobResignation');
 Route::get('/employees/newemployee', [EmployeesController::class, 'newEmployees'])->name('employees.newEmployees');
 Route::get('/employees/replacing-staff', [EmployeesController::class, 'replacingStaff'])->name('employees.replacingStaff');
+Route::get('/employees/show/{id}', [EmployeesController::class, 'show'])->name('employees.show');
+
 
 // Custom Routes for ClassesController (if needed)
 Route::get('/classes/allClass', [ClassesController::class, 'allClasses'])->name('classes.allClasses');
 Route::get('/classes/newClass', [ClassesController::class, 'newClasses'])->name('classes.newClasses');
 Route::post('/classes/check-and-insert', [ClassesController::class, 'checkAndInsert'])->name('classes.checkAndInsert');
+Route::put('/classes/update', [ClassesController::class, 'update'])->name('classes.updateClass');
+
 
 //Datatable
 Route::post('/students/datatable/student-id-cards', [StudentsController::class, 'getStudentIdCards'])->name('datatable.students.idcards');
 Route::post('/employees/datatable/employee-id-cards', [EmployeesController::class, 'getEmployeeIdCards'])->name('datatable.employees.idcards');
-Route::post('/employees/datatable/employee-job-offer-letters', [EmployeesController::class, 'getJobOfferLetters'])->name('datatable.employees.joboffers');
+Route::get('/employees/datatable/employee-job-offer-letters', [EmployeesController::class, 'getJobOfferLetters'])->name('datatable.employees.joboffers');
 Route::post('/employees/datatable/employee-resignation-letters', [EmployeesController::class, 'getResignationLetters'])->name('datatable.employees.resignations');
