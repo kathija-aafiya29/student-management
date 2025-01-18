@@ -14446,5 +14446,9 @@ dl {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1; }
-
+.header-card-color{
+  background-color: white;
+  padding:5px 20px 5px 20px;
+   border-radius: 4px;
+}
 /*# sourceMappingURL=style.css.map */

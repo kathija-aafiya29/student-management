@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Caste;
+use App\Models\Classes;
 
 class GeneralSettingsController extends Controller
 {
@@ -12,10 +14,10 @@ class GeneralSettingsController extends Controller
     }
     public function feeStructure()
     {
-        return view('pages.general_settings.fee_structure');
+        $castes=Caste::all();
+        $classes=Classes::all();
+        return view('pages.general_settings.fee_structure',compact('castes','classes'));
+
     }
-    public function viewStructure()
-    {
-        return view('pages.general_settings.view_structure');
-    }
+    
 }

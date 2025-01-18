@@ -28,7 +28,7 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('settings.feeStructure') }}">Fees Structure</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('settings.viewStructure') }}">View Structure</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('feeStructure.index') }}">View Structure</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('settings.customizeGrading') }}">Customize Grading</a></li>
                 </ul>
             </div>

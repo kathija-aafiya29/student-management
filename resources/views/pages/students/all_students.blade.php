@@ -3,8 +3,8 @@
 @section('content')
 <div class="main-panel">
   <div class="content-wrapper">
-    <div class="page-header">
-      <h3 class="page-title"> All Students </h3>
+    <div class="page-header header-card-color">
+      <h4 class="page-title"> All Students </h4>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Students</a></li>

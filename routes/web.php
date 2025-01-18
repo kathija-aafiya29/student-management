@@ -8,6 +8,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\EmployeeMasterController;
 use App\Http\Controllers\StudentMasterController;
+use App\Http\Controllers\FeeStructureController;
 
 // Login and Logout Routes
 Route::get('/', [LoginController::class, 'showLoginForm']);
@@ -20,11 +21,11 @@ Route::resource('classesMaster', ClassesController::class);
 // Route::resource('settings', GeneralSettingsController::class);
 Route::resource('studentsMaster', StudentMasterController::class);
 Route::resource('employeesMaster', EmployeeMasterController::class);
+Route::resource('feeStructure', FeeStructureController::class);
 
 // Custom Routes for GeneralSettingsController (if needed)
 Route::get('/settings/customize-grading', [GeneralSettingsController::class, 'customizeGrading'])->name('settings.customizeGrading');
 Route::get('/settings/fee-structure', [GeneralSettingsController::class, 'feeStructure'])->name('settings.feeStructure');
-Route::get('/settings/view-structure', [GeneralSettingsController::class, 'viewStructure'])->name('settings.viewStructure');
 
 // Custom Routes for StudentsController (if needed)
 Route::get('/students/allstudents', [StudentsController::class, 'allStudents'])->name('students.allStudents');

@@ -3,8 +3,8 @@
 <!-- partial -->
 <div class="main-panel">
   <div class="content-wrapper">
-    <div class="page-header">
-      <h3 class="page-title"> Add New Employee </h3>
+    <div class="page-header header-card-color">
+      <h4 class="page-title"> Add New Employee </h4>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Employees</a></li>
@@ -16,10 +16,10 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Employee Details</h4>
+            {{-- <h4 class="card-title">Employee Details</h4> --}}
             <form id="employee-form"  enctype="multipart/form-data">
               @csrf
-              <p class="card-description"> Personal Details </p>
+              {{-- <p class="card-description"> Personal Details </p> --}}
               <!-- Employee Name and Role -->
               <div class="row">
                 <div class="col-md-6">
@@ -316,7 +316,7 @@
             toastr.error('An error occurred. Please try again.', 'Error');
           }
         });
-      });
+    });
   });
 </script>
 @endsection

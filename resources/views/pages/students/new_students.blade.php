@@ -3,8 +3,8 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="page-header">
-            <h3 class="page-title"> New Student </h3>
+        <div class="page-header header-card-color">
+            <h4 class="page-title"> New Student </h4>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Students</a></li>
@@ -17,7 +17,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                       <h4 class="card-title">Student Details</h4>
+                       {{-- <h4 class="card-title">Student Details</h4> --}}
 
                       <form id="student-form"  enctype="multipart/form-data">
                         @csrf
