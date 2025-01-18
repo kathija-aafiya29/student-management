@@ -52,7 +52,7 @@ Route::put('/classes/update', [ClassesController::class, 'update'])->name('class
 
 
 //Datatable
-Route::post('/students/datatable/student-id-cards', [StudentsController::class, 'getStudentIdCards'])->name('datatable.students.idcards');
-Route::post('/employees/datatable/employee-id-cards', [EmployeesController::class, 'getEmployeeIdCards'])->name('datatable.employees.idcards');
+Route::get('/students/datatable/student-id-cards', [StudentsController::class, 'getStudentIdCards'])->name('datatable.students.idcards');
+Route::get('/employees/datatable/employee-id-cards', [EmployeesController::class, 'getEmployeeIdCards'])->name('datatable.employees.idcards');
 Route::get('/employees/datatable/employee-job-offer-letters', [EmployeesController::class, 'getJobOfferLetters'])->name('datatable.employees.joboffers');
-Route::post('/employees/datatable/employee-resignation-letters', [EmployeesController::class, 'getResignationLetters'])->name('datatable.employees.resignations');
+Route::get('/employees/datatable/employee-resignation-letters', [EmployeesController::class, 'getResignationLetters'])->name('datatable.employees.resignations');

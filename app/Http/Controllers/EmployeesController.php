@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\DB;
 use App\Models\Employees;
 
 class EmployeesController extends Controller
@@ -39,7 +38,12 @@ class EmployeesController extends Controller
 
         return DataTables::of($employees)
             ->addColumn('actions', function ($employee) {
-                return '<button class="btn btn-primary view-id-card" data-id="' . $employee->id . '">View ID Card</button>';
+                return '<button class="btn btn-info view-id-card" data-bs-toggle="modal"
+                data-bs-target="#idCardModal" data-id="' . $employee->id . '"
+                                                data-company-name="' . $employee->employee_name . '" data-designation="' . $employee->employee_role . '"
+                                                data-phone="' . $employee->mobileno . '" data-address="' . $employee->permanent_address . '"
+                                                data-email="' . $employee->email . '">View ID
+                                                Card</button>';
             })
             ->rawColumns(['actions'])
             ->make(true);
@@ -50,8 +54,9 @@ class EmployeesController extends Controller
 
         return DataTables::of($employees)
             ->addColumn('actions', function ($employee) {
-                return'<a herf="#" class="btn btn-info viewOffer" data-id="' . $employee->id . '">View Offer
-                                                Letter</a>';
+                return'<button data-bs-toggle="modal"
+                data-bs-target="#offerLetterModal" class="btn btn-info viewOffer" data-id="' . $employee->id . '">View Offer
+                                                Letter</button>';
 
             })
             ->rawColumns(['actions'])
@@ -63,7 +68,11 @@ class EmployeesController extends Controller
 
         return DataTables::of($employees)
             ->addColumn('actions', function ($employee) {
-                return '<a href="/download/resignation/' . $employee->id . '" class="btn btn-danger">Download Resignation</a>';
+                return '<button class="btn btn-info view-resignation-btn" data-bs-toggle="modal"
+                data-bs-target="#resignationLetterModal" data-name="' . $employee->employee_name . '"
+                data-position="' . $employee->employee_role . '" data-date="' . $employee->doj.'" data-status="Pending"
+                data-id="' . $employee->id . '">View</button>';
+
             })
             ->rawColumns(['actions'])
             ->make(true);
