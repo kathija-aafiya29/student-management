@@ -139,15 +139,13 @@
         </div>
       </li>
       <li class="nav-item nav-logout d-none d-lg-block">
-        <a class="nav-link" href="#">
-          <i class="mdi mdi-power"></i>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          
+          <form id="logout-form-1" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
     
-        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-1').submit();">
           <i class="mdi mdi-power"></i>
-        </a>
         </a>
       </li>
       <li class="nav-item nav-settings d-none d-lg-block">
