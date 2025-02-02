@@ -13,9 +13,11 @@ use App\Http\Controllers\FeeStructureController;
 // Login and Logout Routes
 Route::get('/', [LoginController::class, 'showLoginForm']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/authLogin', [LoginController::class, 'login'])->name('authLogin');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [LoginController::class, 'index'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function () {
 // Resource Routes
 Route::resource('classesMaster', ClassesController::class);
 // Route::resource('settings', GeneralSettingsController::class);
@@ -57,3 +59,5 @@ Route::get('/students/datatable/student-id-cards', [StudentsController::class, '
 Route::get('/employees/datatable/employee-id-cards', [EmployeesController::class, 'getEmployeeIdCards'])->name('datatable.employees.idcards');
 Route::get('/employees/datatable/employee-job-offer-letters', [EmployeesController::class, 'getJobOfferLetters'])->name('datatable.employees.joboffers');
 Route::get('/employees/datatable/employee-resignation-letters', [EmployeesController::class, 'getResignationLetters'])->name('datatable.employees.resignations');
+
+});

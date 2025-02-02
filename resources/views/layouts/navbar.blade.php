@@ -30,11 +30,20 @@
         </a>
         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href="#">
-            <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+              <i class="mdi mdi-cached me-2 text-success"></i> Activity Log
+          </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/logout">
-            <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
-        </div>
+          
+          {{-- Logout Form --}}
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+          </form>
+      
+          <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="mdi mdi-logout me-2 text-primary"></i> Signout
+          </a>
+      </div>
+      
       </li>
       <li class="nav-item d-none d-lg-block full-screen-link">
         <a class="nav-link">
@@ -132,6 +141,13 @@
       <li class="nav-item nav-logout d-none d-lg-block">
         <a class="nav-link" href="#">
           <i class="mdi mdi-power"></i>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    
+        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <i class="mdi mdi-power"></i>
+        </a>
         </a>
       </li>
       <li class="nav-item nav-settings d-none d-lg-block">

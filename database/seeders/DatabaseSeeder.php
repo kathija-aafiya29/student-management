@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             casteSeeder::class,
+            AdminSeeder::class,
             // Add other seeders as needed
         ]);
     }
