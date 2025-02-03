@@ -14451,4 +14451,26 @@ dl {
   padding:5px 20px 5px 20px;
    border-radius: 4px;
 }
+/* Custom background colors for Toastr notifications */
+.toast {
+  background-color: #333 !important;  /* Change to your desired background color */
+  color: #fff !important;              /* Text color */
+}
+
+.toast-success {
+  background-color: #28a745 !important; /* Green for success */
+}
+
+.toast-error {
+  background-color: #dc3545 !important; /* Red for error */
+}
+
+.toast-info {
+  background-color: #17a2b8 !important; /* Blue for info */
+}
+
+.toast-warning {
+  background-color: #ffc107 !important; /* Yellow for warning */
+}
+
 /*# sourceMappingURL=style.css.map */

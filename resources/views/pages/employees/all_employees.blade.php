@@ -29,8 +29,9 @@
                         <p class="card-text text-muted">{{ $employee->employee_role }}</p>
                         <div class="d-flex justify-content-center">
                             <a href="{{ route('employeesMaster.edit', $employee->id) }}" class="btn btn-sm btn-primary mx-1" title="Edit"><i class="mdi mdi-table-edit"></i></a>
-                            <button data-id="{{ $employee->id }}" class="btn btn-sm btn-info delete-employee mx-1" >{{ $employee->active_status?"Inactive":"Active" }}</i></button>
-                            <a href="{{ route('employeesMaster.destroy', $employee->id) }}" class="btn btn-sm btn-danger mx-1" title="Edit"><i class="mdi mdi-delete"></i></a>
+                            <button data-id="{{ $employee->id }}" class="btn btn-sm toggle-status {{ $employee->active_status ? "btn-secondary":"btn-info" }}  mx-1" >
+                              {{ $employee->active_status?"InActive":"Active" }}</button>
+                            <button class="btn btn-sm btn-danger delete-employee mx-1" title="delete"  data-id="{{ $employee->id }}"><i class="mdi mdi-delete"></i></a>
                         </div>
                     </div>
                 </div>
@@ -53,32 +54,93 @@
 @endsection
 @section('js')
 <!-- Include Toastr -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     $(document).ready(function () {
+        // Handle status toggle
+        $('.toggle-status').click(function (e) {
+            e.preventDefault();
+            let button = $(this);
+            let employeeId = button.data('id');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to change the employee's status?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#28a745",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Change it!",
+                cancelButtonText: "No, Cancel",
+                width: "350px",  
+                heightAuto: false,
+                customClass: {
+                    popup: "small-swal"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('employeesMaster') }}/" + employeeId + "/toggle-status",
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function () {
+                            Swal.fire("Updated!", "Employee status has been changed.", "success").then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire("Error!", "Failed to update status.", "error");
+                        }
+                    });
+                }
+            });
+        });
+
         // Handle delete employee
         $('.delete-employee').click(function (e) {
             e.preventDefault();
             let employeeId = $(this).data('id');
-            if (confirm('Are you sure you want to delete this employee?')) {
-                $.ajax({
-                    url: "{{ url('employeesMaster') }}/" + employeeId,
-                    type: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    success: function (response) {
-                        toastr.success('Employee deleted successfully');
-                        location.reload();
-                    },
-                    error: function (xhr) {
-                        toastr.error('Failed to delete employee');
-                    }
-                });
-            }
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "This action cannot be undone!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Yes, Delete it!",
+                cancelButtonText: "No, Cancel",
+                width: "350px",  
+                heightAuto: false,
+                customClass: {
+                    popup: "small-swal"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('employeesMaster') }}/" + employeeId,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function () {
+                            Swal.fire("Deleted!", "Employee has been removed.", "success").then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire("Error!", "Failed to delete employee.", "error");
+                        }
+                    });
+                }
+            });
         });
     });
 </script>
+
 @endsection

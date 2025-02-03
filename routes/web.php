@@ -45,6 +45,8 @@ Route::get('/employees/job-resignation', [EmployeesController::class, 'jobResign
 Route::get('/employees/newemployee', [EmployeesController::class, 'newEmployees'])->name('employees.newEmployees');
 Route::get('/employees/replacing-staff', [EmployeesController::class, 'replacingStaff'])->name('employees.replacingStaff');
 Route::get('/employees/show/{id}', [EmployeesController::class, 'show'])->name('employees.show');
+Route::post('employeesMaster/{id}/toggle-status', [EmployeeMasterController::class, 'toggleStatus']);
+
 
 
 // Custom Routes for ClassesController (if needed)
