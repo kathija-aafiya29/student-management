@@ -266,55 +266,57 @@
 <script>
  $(document).ready(function () {
     $('#employee-update-form').on('submit', function (e) {
-    e.preventDefault();
-    $('.text-danger').remove(); // Remove previous validation errors
+        e.preventDefault();
+        $('.text-danger').remove(); // Remove previous validation errors
 
-    const submitButton = $('#update-employee');
-    submitButton.prop('disabled', true).text('Updating...');
+        const submitButton = $('#update-employee');
+        submitButton.prop('disabled', true).text('Updating...');
 
-    // let formData = new FormData(this);
-    // for (let [key, value] of formData.entries()) {
-    //     console.log(key, value); // Log each key-value pair in the FormData object
-    // }
+        // let formData = new FormData(this);
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(key, value); // Log each key-value pair in the FormData object
+        // }
 
-    let employeeId = $('#user_id').val(); // Assuming an input field with the employee ID
-    let updateUrl = '{{ url("employeesMaster") }}/' + employeeId;
-    // console.log("formdata",formData);
-    var formData = new FormData($('#employee-update-form')[0]);
-    formData.append('_method', 'PUT');
+        let employeeId = $('#user_id').val(); // Assuming an input field with the employee ID
+        let updateUrl = '{{ url("employeesMaster") }}/' + employeeId;
+        // console.log("formdata",formData);
+        var formData = new FormData($('#employee-update-form')[0]);
+        formData.append('_method', 'PUT');
 
-    $.ajax({
-        url: updateUrl,
-    method: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-    dataType: 'json',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function (response) {
-            submitButton.prop('disabled', false).text('Update');
-                toastr.success(response.message, 'Success');   
-          
-            
-        },
-        error: function (xhr) {
-            submitButton.prop('disabled', false).text('Update');
+        $.ajax({
+            url: updateUrl,
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    submitButton.prop('disabled', false).text('Update');
+                        toastr.success(response.message, 'Success');   
+                
+                    
+                },
+                error: function (xhr) {
+                    submitButton.prop('disabled', false).text('Update');
 
-            if (xhr.status === 422) {
-                const errors = xhr.responseJSON.errors || {};
-                $.each(errors, function (key, messages) {
-                    $(`[name="${key}"]`).after(`<small class="text-danger">${messages[0]}</small>`);
-                });
-                toastr.error('Please fix the errors and try again.', 'Validation Error');
-            } else {
-                let errorMessage = xhr.responseJSON?.message || 'An error occurred.';
-                toastr.error(errorMessage, 'Error');
-            }
-        }
+                    if (xhr.responseJSON) {
+                    const errors = xhr.responseJSON.details;
+                   
+                    Object.keys(errors).forEach(function (key) {
+                        const errorMsg = errors[key][0];
+                        $(`[name="${key}"]`).after(`<small class="text-danger">${errorMsg}</small>`);
+                    });
+                    toastr.error('Please fix the errors and try again.', 'Validation Error');
+                        } else {
+                            const error = xhr.responseJSON?.message || 'An error occurred.';
+                            toastr.error(error, 'Error');
+                        }
+                }
+            });
     });
-});
 
 });
 

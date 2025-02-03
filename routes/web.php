@@ -36,6 +36,7 @@ Route::get('/students/admission-letter', [StudentsController::class, 'admissionL
 Route::get('/students/promote-depromote', [StudentsController::class, 'promoteDepromote'])->name('students.promoteDepromote');
 Route::get('/students/newStudent', [StudentsController::class, 'newStudents'])->name('students.newStudents');
 Route::get('/students/listStudent', [StudentsController::class, 'studentList'])->name('students.studentList');
+Route::post('studentsMaster/{id}/toggle-status', [StudentMasterController::class, 'toggleStatus']);
 
 // Custom Routes for EmployeesController (if needed)
 Route::get('/employees/allEmployee', [EmployeesController::class, 'allEmployees'])->name('employees.allEmployees');

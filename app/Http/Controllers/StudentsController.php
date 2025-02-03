@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Students;
+use App\Models\Classes;
 
 class StudentsController extends Controller
 {
@@ -26,7 +27,9 @@ class StudentsController extends Controller
     }
     public function newstudents()
     {
-        return view('pages.students.new_students');
+        $classes=Classes::all();
+
+        return view('pages.students.new_students',compact('classes'));  
     }
     public function studentList()
     {

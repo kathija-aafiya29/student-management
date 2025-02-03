@@ -26,11 +26,12 @@
                     </div>
                     <div class="card-body text-center">
                         <h6>{{ $student->student_name }}</h6>
-                        <p class="card-text text-muted">{{ $student->class }}</p>
+                        <p class="card-text text-muted">{{ $student->class_name }}</p>
                         <div class="d-flex justify-content-center">
-                            <a href="{{ route('studentsMaster.edit', $student->id) }}" class="btn btn-sm btn-primary mx-1" title="Edit"><i class="mdi mdi-table-edit"></i></a>
-                            {{-- <button data-id="{{ $student->id }}" class="btn btn-sm btn-info delete-student mx-1" >{{ $student->active_status?"Inactive":"Active" }}</i></button> --}}
-                            <a href="{{ route('studentsMaster.destroy', $student->id) }}" class="btn btn-sm btn-danger mx-1" title="Edit"><i class="mdi mdi-delete"></i></a>
+                          <a href="{{ route('studentsMaster.edit', $student->id) }}" class="btn btn-sm btn-primary mx-1" title="Edit"><i class="mdi mdi-table-edit"></i></a>
+                            <button data-id="{{ $student->id }}" class="btn btn-sm toggle-status {{ $student->active_status ? "btn-secondary":"btn-info" }}  mx-1" >
+                              {{ $student->active_status?"InActive":"Active" }}</button>
+                            <button class="btn btn-sm btn-danger delete-student mx-1" title="delete"  data-id="{{ $student->id }}"><i class="mdi mdi-delete"></i></a>
                         </div>
                     </div>
                 </div>
@@ -57,28 +58,89 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $(document).ready(function () {
-        // Handle delete employee
-        $('.delete-employee').click(function (e) {
+        // Handle status toggle
+        $('.toggle-status').click(function (e) {
             e.preventDefault();
-            let employeeId = $(this).data('id');
-            if (confirm('Are you sure you want to delete this employee?')) {
-                $.ajax({
-                    url: "{{ url('employeesMaster') }}/" + employeeId,
-                    type: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    success: function (response) {
-                        toastr.success('Employee deleted successfully');
-                        location.reload();
-                    },
-                    error: function (xhr) {
-                        toastr.error('Failed to delete employee');
-                    }
-                });
-            }
+            let button = $(this);
+            let studentId = button.data('id');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to change the Student's status?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#28a745",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Change it!",
+                cancelButtonText: "No, Cancel",
+                width: "350px",  
+                heightAuto: false,
+                customClass: {
+                    popup: "small-swal"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('studentsMaster') }}/" + studentId + "/toggle-status",
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function () {
+                            Swal.fire("Updated!", "Student status has been changed.", "success").then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire("Error!", "Failed to update status.", "error");
+                        }
+                    });
+                }
+            });
+        });
+
+        // Handle delete employee
+        $('.delete-student').click(function (e) {
+            e.preventDefault();
+            let studentId = $(this).data('id');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "This action cannot be undone!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Yes, Delete it!",
+                cancelButtonText: "No, Cancel",
+                width: "350px",  
+                heightAuto: false,
+                customClass: {
+                    popup: "small-swal"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ url('studentsMaster') }}/" + studentId,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function () {
+                            Swal.fire("Deleted!", "Student has been removed.", "success").then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire("Error!", "Failed to delete Student.", "error");
+                        }
+                    });
+                }
+            });
         });
     });
 </script>

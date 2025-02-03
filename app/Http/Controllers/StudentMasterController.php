@@ -7,6 +7,7 @@ use App\Models\Students;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
+use App\Models\Classes;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,9 +15,12 @@ class StudentMasterController extends Controller
 {
     public function index()
     {
-        $students = Students::all();
+        $students = Students::join('classes', 'students.class', '=', 'classes.id')
+            ->get();
+    
         return view('pages.students.all_students', compact('students'));
     }
+    
 
     /**
      * Show the form for creating a new student.
@@ -91,34 +95,79 @@ class StudentMasterController extends Controller
     /**
      * Show the form for editing the specified student.
      */
-    public function edit(Student $student)
+    public function edit(string $id)
     {
-        return view('students.edit', compact('student'));
+        $student = Students::find($id);
+        $classes = Classes::all();
+        return view('pages.students.edit_student_form', compact('student','classes'));
     }
 
     /**
      * Update the specified student in the database.
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
-        // Validation
-        $validated = $this->validateStudent($request, $student->id);
-
-        // Update student
-        $student->update($validated);
-
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        DB::beginTransaction(); // Start a transaction
+    
+        try {
+            $student = Students::findOrFail($id); // Find student
+            $validated = $this->validateStudent($request, $id);
+    
+            // Handle profile picture update
+            if ($request->hasFile('profile_picture')) {
+                $file = $request->file('profile_picture');
+                $destinationPath = storage_path('app/public/assets/profiles');
+    
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+    
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $file->move($destinationPath, $fileName);
+                $filePath = 'profiles/' . $fileName;
+    
+                // Delete old profile picture if exists
+                if ($student->profile_picture && file_exists(storage_path('app/public/' . $student->profile_picture))) {
+                    unlink(storage_path('app/public/' . $student->profile_picture));
+                }
+    
+                $validated['profile_picture'] = $filePath;
+            }
+    
+            // Update student record
+            $student->update($validated);
+    
+            // Update user email if changed
+            $student->user->update([
+                'name'  => $validated['student_name'],
+                'email' => $validated['email'],
+            ]);
+    
+            DB::commit();
+            return response()->json(['message' => 'Student record updated successfully.'], 200);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'error'   => 'Validation failed.',
+                'details' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback on error
+    
+            return response()->json(['error' => 'Failed to update student record.', 'details' => $e->getMessage()], 500);
+        }
     }
+    
 
     /**
      * Remove the specified student from the database.
      */
-    public function destroy(Student $student)
+    public function destroy( string $id)
     {
+        $student = Students::findOrFail($id);
         $student->delete();
-
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+        return response()->json(['message' => 'Student deleted successfully.']);
     }
+
 
     /**
      * Validation logic.
@@ -127,9 +176,9 @@ class StudentMasterController extends Controller
     {
         return $request->validate([
             'student_name'           => 'required|string|max:100',
-            'class'                  => 'required|string|max:50',
+            'class'                  => 'required|exists:classes,id',
             'dob'                    => 'required|date',
-            'email' => 'required|email|unique:students,email',
+            'email' => 'required|email|unique:students,email,' . $id,
             'gender'                 => 'required|in:Male,Female,Other',
             'religion'               => 'required|string|max:50',
             'community'              => 'required|string|max:50',
@@ -161,5 +210,18 @@ class StudentMasterController extends Controller
             'mother_income'          => 'required|numeric|min:0',
             'active_status'          => 'boolean',
         ]);
+    }
+    public function toggleStatus(Request $request, $id)
+    {
+        $student = Students::findOrFail($id);
+
+        // Toggle the student status (0 = inactive, 1 = active)
+        $student->active_status = !$student->active_status;
+
+        if ($student->save()) {
+            return response()->json(['message' => 'Student status updated successfully']);
+        }
+
+        return response()->json(['message' => 'Failed to update Student status'], 500);
     }
 }

@@ -296,7 +296,7 @@
           },
           error: function (xhr) {
             submitButton.prop('disabled', false);
-                submitButton.text('Add');
+                submitButton.text('Submit');
                 console.log(xhr)
                 if (xhr.responseJSON) {
                     const errors = xhr.responseJSON.details;
@@ -305,15 +305,11 @@
                         const errorMsg = errors[key][0];
                         $(`[name="${key}"]`).after(`<small class="text-danger">${errorMsg}</small>`);
                     });
+                    toastr.error('Please fix the errors and try again.', 'Validation Error');
                 } else {
                     const error = xhr.responseJSON?.message || 'An error occurred.';
-                    $('.errorModalMsg').text(error);
-                    $('.errorModalPm').modal('show');
-                    setTimeout(function () {
-                        $('.errorModalPm').modal('hide');
-                    }, 3000);
+                    toastr.error(error, 'Error');
                 }
-            toastr.error('An error occurred. Please try again.', 'Error');
           }
         });
     });
