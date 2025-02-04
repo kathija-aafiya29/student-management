@@ -21,9 +21,43 @@ class StudentsController extends Controller
     {
         return view('pages.students.admission_letter');
     }
-    public function promoteDepromote()
+
+    public function promoteDepromote(Request $request)
     {
-        return view('pages.students.promote_depromote');
+        if ($request->ajax()) {
+            $query = Students::join('classes', 'students.class', '=', 'classes.id')
+                ->select('students.*', 'classes.class_name');
+
+            // Apply class filter if selected
+            if ($request->has('class_id') && $request->class_id != '') {
+                $query->where('classes.id', $request->class_id);
+            }
+
+            return DataTables::of($query)
+                ->addIndexColumn()
+                ->addColumn('promotion', function ($row) {
+                    $selectedPromote = $row->promote_status === 1 ? 'selected' : '';
+                    $selectedDepromote = $row->promote_status === 0 ? 'selected' : '';
+
+                    return '<select class="form-control form-control-sm" id="promotion_' . $row->id . '">
+                                <option value="" ' . $selectedPromote . '>Select</option>
+                                <option value="1" ' . $selectedPromote . '>Promote</option>
+                                <option value="0" ' . $selectedDepromote . '>De-Promote</option>
+                            </select>';
+                })
+                ->addColumn('action', function ($row) {
+                    return '<button class="btn btn-success btn-sm" onclick="submitPromotion('.$row->id.')">
+                               <i class="mdi mdi-check"></i>
+                            </button>';
+                })
+                ->rawColumns(['promotion', 'action'])
+                ->make(true);
+        }
+
+        // Fetch classes for filter dropdown
+        $classes = Classes::all();
+
+        return view('pages.students.promote_depromote', compact('classes'));
     }
     public function newstudents()
     {
@@ -50,5 +84,14 @@ class StudentsController extends Controller
             })
             ->rawColumns(['actions'])
             ->make(true);
+    }
+    
+    public function updatePromotion(Request $request)
+    {
+        $student = Students::findOrFail($request->id);
+        $student->promote_status = $request->status;
+        $student->save();
+    
+        return response()->json(['message' => 'Student promotion status updated successfully!']);
     }
 }

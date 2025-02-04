@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\GeneralSettingsController;
+use App\Http\Controllers\CustomGradingController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\EmployeeMasterController;
@@ -24,6 +25,7 @@ Route::resource('classesMaster', ClassesController::class);
 Route::resource('studentsMaster', StudentMasterController::class);
 Route::resource('employeesMaster', EmployeeMasterController::class);
 Route::resource('feeStructure', FeeStructureController::class);
+Route::resource('customGrading', CustomGradingController::class);
 
 // Custom Routes for GeneralSettingsController (if needed)
 Route::get('/settings/customize-grading', [GeneralSettingsController::class, 'customizeGrading'])->name('settings.customizeGrading');
@@ -34,6 +36,7 @@ Route::get('/students/allstudents', [StudentsController::class, 'allStudents'])-
 Route::get('/students/id-card-student', [StudentsController::class, 'studentIdCard'])->name('students.studentIdCard');
 Route::get('/students/admission-letter', [StudentsController::class, 'admissionLetter'])->name('students.admissionLetter');
 Route::get('/students/promote-depromote', [StudentsController::class, 'promoteDepromote'])->name('students.promoteDepromote');
+Route::post('/students/update-promotion', [StudentsController::class, 'updatePromotion'])->name('students.updatePromotion');
 Route::get('/students/newStudent', [StudentsController::class, 'newStudents'])->name('students.newStudents');
 Route::get('/students/listStudent', [StudentsController::class, 'studentList'])->name('students.studentList');
 Route::post('studentsMaster/{id}/toggle-status', [StudentMasterController::class, 'toggleStatus']);
